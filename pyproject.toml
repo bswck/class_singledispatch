@@ -1,0 +1,77 @@
+[tool.poetry]
+name = "class_singledispatch"
+version = "1.0.0"
+description = "singledispatch() that operates on classes, not their instances."
+authors = ["bswck <bswck.dev@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.6.1"
+ruff = "^0.1.2"
+pytest = "^7.4.3"
+coverage = "^7.3.2"
+black = "^23.10.1"
+pylint = "^3.0.2"
+pre-commit = "^3.5.0"
+
+[tool.ruff]
+# To discuss the presented rationales, contact the author (bswck).
+select = ["ALL"]
+ignore = [
+    # Description: Missing type annotation for self in method
+    # Rationale: It is mostly redundant, as is for ANN102.
+    "ANN101",
+
+    # Description: Missing type annotation for cls in method
+    # Rationale: It is mostly redundant, as is for ANN101.
+    "ANN102",
+
+    # Description: Dynamically typed expressions (typing.Any) are disallowed
+    # Rationale:
+    #  We use Any to allow user to constrain return types of our functions on their own.
+    #  For example, having a function `def foo() -> Any: ...` allows user to write
+    #  `my_foo: int = foo()` and have it passed type checking, since `Any` disables
+    #  type checking completely.
+    "ANN401",
+
+    # Description: 1 blank line required before class docstring
+    # Rationale: Remove the warning -- D211 (no-blank-line-before-class) preferred.
+    "D203",
+
+    # Description: Multi-line docstring summary should start at the second line
+    # Rationale: Remove the warning -- D213 (multi-line-summary-second-line) preferred.
+    "D212",
+]
+exclude = ["tests/"]
+
+[tool.mypy]
+strict = true
+
+[tool.isort]
+profile = "black"
+
+[[tool.poetry_bumpversion.replacements]]
+files = ["./README.md"]
+
+[tool.coverage.report]
+omit = ["tests/*"]
+fail_under = 96
+exclude_lines = [
+    "pragma: no cover",
+    "raise NotImplementedError",
+    "if TYPE_CHECKING:",
+    "if typing.TYPE_CHECKING:",
+    "@overload",
+    "@typing.overload",
+    "\\(Protocol\\):$",
+    "typing.assert_never",
+    "assert_never",
+]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
