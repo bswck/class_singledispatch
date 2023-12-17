@@ -20,19 +20,26 @@ While `functools.singledispatch` examines the class of the first user argument,
 the same task with it as `functools.singledispatch`.
 
 ```python
+from class_singledispatch import class_singledispatch
+
+
 class T:
     pass
 
+
 class OtherT:
     pass
+
 
 @class_singledispatch
 def on_class(cls: type[T], /) -> None:
     print("T!")
 
+
 @on_class.register
 def on_other_class(cls: type[OtherT], /) -> None:
     print("OtherT!")
+
 
 # Useful for <=3.10 as soon as `@class_singledispatch` allows specifying
 # similarly to `.register`:
@@ -40,6 +47,7 @@ def on_other_class(cls: type[OtherT], /) -> None:
 @on_class.register(SomeOtherT)
 def on_some_other_class(cls: type[SomeOtherT], /) -> None:
     print("SomeOtherT!")
+
 
 on_class(T)  # T!
 on_class(OtherT)  #  OtherT!
