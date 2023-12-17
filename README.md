@@ -41,9 +41,9 @@ def on_other_class(cls: type[OtherT], /) -> None:
     print("OtherT!")
 
 
-# Useful for <=3.10 as soon as `@class_singledispatch` allows specifying
-# similarly to `.register`:
-# Pass the class to the decorator not to use the annotation for resolution
+# Useful for <=3.10, as soon as `@class_singledispatch` allows specifying
+# the class similarly to `.register` -- pass the class to the decorator
+# not to use the annotation from the function for the targeted class resolution
 @on_class.register(SomeOtherT)
 def on_some_other_class(cls: type[SomeOtherT], /) -> None:
     print("SomeOtherT!")
