@@ -14,6 +14,7 @@ from typing import (
     TYPE_CHECKING,
     Any,
     Generic,
+    Type,
     TypeVar,
     get_args,
     get_origin,
@@ -25,17 +26,13 @@ if TYPE_CHECKING:
     from collections.abc import Callable
 
 if sys.version_info < (3, 10):  # pragma: no cover
-    from typing import Type
-
     from typing_extensions import ParamSpec
 
     NoneType = type(None)
-    OldFashionGenericAlias = GenericAlias = type(Type[object])
+    GenericAlias = type(Type[object])
 else:  # pragma: no cover
     from types import GenericAlias
-    from typing import ParamSpec, Type
-
-    OldFashionGenericAlias = type(Type)
+    from typing import ParamSpec
 
 
 __all__ = (
@@ -66,7 +63,7 @@ def resolve_annotated_type(func: Callable[..., _R]) -> type[Any]:
     argument_name, generic_alias = next(iter(get_type_hints(func).items()))
     if not (
         isinstance(generic_alias, GenericAlias)
-        and isinstance(get_origin(generic_alias), (type, OldFashionGenericAlias))
+        and (isinstance(origin := get_origin(generic_alias), type) or origin is Type)
     ):
         msg = (
             f"Invalid annotation for {argument_name!r}. "
