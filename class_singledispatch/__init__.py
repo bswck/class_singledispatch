@@ -29,10 +29,13 @@ if sys.version_info < (3, 10):  # pragma: no cover
     from typing_extensions import ParamSpec
 
     NoneType = type(None)
-    GenericAlias = type(Type[object])
+    OldFashionGenericAlias = GenericAlias = type(Type[object])
+
 else:  # pragma: no cover
     from types import GenericAlias
     from typing import ParamSpec
+
+    OldFashionGenericAlias = type(Type[object])
 
 
 __all__ = (
@@ -62,7 +65,7 @@ def resolve_annotated_type(func: Callable[..., _R]) -> type[Any]:
         raise TypeError(msg)
     argument_name, generic_alias = next(iter(get_type_hints(func).items()))
     if not (
-        isinstance(generic_alias, GenericAlias)
+        isinstance(generic_alias, (GenericAlias, OldFashionGenericAlias))
         and ((origin := get_origin(generic_alias)) is Type or isinstance(origin, type))
     ):
         msg = (
