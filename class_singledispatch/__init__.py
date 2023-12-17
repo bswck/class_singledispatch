@@ -35,7 +35,7 @@ else:  # pragma: no cover
     from types import GenericAlias
     from typing import ParamSpec, Type
 
-    OldFashionGenericAlias = type(Type[object])
+    OldFashionGenericAlias = type(Type)
 
 
 __all__ = (
