@@ -12,6 +12,41 @@ A ``singledispatch()`` for arguments that are classes annotated as specific type
 
 Inspired by https://github.com/python/cpython/issues/100623.
 
+# A simple example
+Use `functools.singledispatch` to singledispatch classes as parameters.
+
+While `functools.singledispatch` examines the class of the first user argument,
+`class_singledispatch` uses the first argument as the class itself and performs
+the same task with it as `functools.singledispatch`.
+
+```python
+class T:
+    pass
+
+class OtherT:
+    pass
+
+@class_singledispatch
+def on_class(cls: type[T], /) -> None:
+    print("T!")
+
+@on_class.register
+def on_other_class(cls: type[OtherT], /) -> None:
+    print("OtherT!")
+
+# Useful for <=3.10 as soon as `@class_singledispatch` allows specifying
+# similarly to `.register`:
+# Pass the class to the decorator not to use the annotation for resolution
+@on_class.register(SomeOtherT)
+def on_some_other_class(cls: type[SomeOtherT], /) -> None:
+    print("SomeOtherT!")
+
+on_class(T)  # T!
+on_class(OtherT)  #  OtherT!
+on_class(SomeOtherT)  #  SomeOtherT!
+```
+
+
 # Installation
 If you want to…
 
