@@ -32,16 +32,59 @@ if sys.version_info < (3, 10):  # pragma: no cover
     NoneType = type(None)
     GenericAlias = type(Type[object])
 else:  # pragma: no cover
-    from types import GenericAlias, NoneType
+    from types import GenericAlias
     from typing import ParamSpec
+
+
+__all__ = (
+    "class_singledispatch",
+    "resolve_annotated_type",
+)
+
 
 _P = ParamSpec("_P")
 _R = TypeVar("_R")
 
 
+def resolve_annotated_type(func: Callable[..., _R]) -> type[Any]:
+    """
+    Resolve the annotated type of the first argument of `func`.
+
+    This function is used to determine the type of the first argument of `func`
+    when the first argument is annotated as a type (e.g. `type[SomeClass]`).
+    """
+    annotations = getattr(func, "__annotations__", {})
+    if not annotations:
+        msg = (
+            f"Invalid first argument to `register()`: {func!r}. "
+            f"Use either `@register(some_class)` or plain `@register` "
+            f"on an annotated function."
+        )
+        raise TypeError(msg)
+    argument_name, generic_alias = next(iter(get_type_hints(func).items()))
+    if not (
+        isinstance(generic_alias, GenericAlias)
+        and isinstance(get_origin(generic_alias), type)
+    ):
+        msg = (
+            f"Invalid annotation for {argument_name!r}. "
+            f"{generic_alias!r} is not an annotation of type (e.g. type[T])."
+        )
+        raise TypeError(msg)
+    cls = next(iter(get_args(generic_alias)), object)
+    if not isinstance(cls, type):
+        msg = (
+            f"Invalid annotation for {argument_name!r}. {cls!r} is not a runtime class."
+        )
+        raise TypeError(msg)
+    return cls
+
+
 class _ClassSingleDispatchCallable(Generic[_R]):
     def __init__(self, func: Callable[..., _R]) -> None:
         self._dispatch = singledispatch(func)
+        # Validate this function.
+        resolve_annotated_type(func)
 
     def dispatch(self, cls: type[Any]) -> Callable[..., _R]:
         return self._dispatch.dispatch(cls)
@@ -90,51 +133,21 @@ class _ClassSingleDispatchCallable(Generic[_R]):
         """
         if isinstance(cls, type):
             if func is None:
-                return lambda *args, **kwargs: self.register(cls, *args, **kwargs)
+                return partial(self.register, cls)
         else:
             if func is not None:
                 msg = (
                     f"Invalid first argument to `register()`. "
-                    f"{cls!r} is not a class."
-                )
-                raise TypeError(msg)
-            annotations = getattr(cls, "__annotations__", {})
-            if not annotations:
-                msg = (
-                    f"Invalid first argument to `register()`: {cls!r}. "
-                    f"Use either `@register(some_class)` or plain `@register` "
-                    f"on an annotated function."
+                    f"{cls!r} is not a runtime class."
                 )
                 raise TypeError(msg)
             func = cls
-
-            argument_name, generic_alias = next(iter(get_type_hints(func).items()))
-            if not (
-                isinstance(generic_alias, GenericAlias)
-                and issubclass(get_origin(generic_alias), type)
-            ):
-                msg = (
-                    f"Invalid annotation for {argument_name!r}. "
-                    f"{generic_alias!r} is not a type[T] annotation."
-                )
-                raise TypeError(msg)
-            cls = next(iter(get_args(generic_alias)), object)
-            if cls is None:
-                cls = NoneType
-            elif not cls:
-                # Type[()] -> Type[object]
-                cls = object
-            if not isinstance(cls, type):
-                msg = (
-                    f"Invalid annotation for {argument_name!r}. "
-                    f"{cls!r} is not a class."
-                )
-                raise TypeError(msg)
+            cls = resolve_annotated_type(func)
 
         self._dispatch.register(cls, func)
         return func
 
-    def _clear_cache(self) -> None:
+    def _clear_cache(self) -> None:  # pragma: no cover
         self._dispatch._clear_cache()  # noqa: SLF001
 
     def __call__(self, cls: type[Any], /, *args: Any, **kwargs: Any) -> _R:
