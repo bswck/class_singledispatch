@@ -9,6 +9,7 @@
 [![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 
 A ``singledispatch()`` for arguments that are classes annotated as specific types.
+Inspired by https://github.com/python/cpython/issues/100623.
 
 # Installation
 If you want to…
