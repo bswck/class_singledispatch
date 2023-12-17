@@ -4,7 +4,7 @@
 
 [tool.poetry]
 name = "class_singledispatch"
-version = "0.0.0"
+version = "1.0.0"
 description = "A ``singledispatch()`` for arguments that are classes annotated as specific types."
 authors = ["bswck <bswck.dev@gmail.com>"]
 license = "MIT"
