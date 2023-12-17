@@ -63,7 +63,7 @@ def resolve_annotated_type(func: Callable[..., _R]) -> type[Any]:
     argument_name, generic_alias = next(iter(get_type_hints(func).items()))
     if not (
         isinstance(generic_alias, GenericAlias)
-        and (isinstance(origin := get_origin(generic_alias), type) or origin is Type)
+        and ((origin := get_origin(generic_alias)) is Type or isinstance(origin, type))
     ):
         msg = (
             f"Invalid annotation for {argument_name!r}. "
