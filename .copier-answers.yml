@@ -1,0 +1,21 @@
+_commit: 6253cb7
+_src_path: gh:bswck/skeleton
+author_username: bswck
+docs: true
+docs_slug: class-singledispatch
+email_address: bswck.dev@gmail.com
+github_username: bswck
+license_name: MIT
+org_full_name: Bartosz Sławecki
+package_name: class_singledispatch
+project_description: A singledispatch() for arguments that are classes annotated as
+    specific types.
+publish_on_pypi: true
+pypi_project_description: A singledispatch() for arguments that are classes annotated
+    as specific types.
+pypi_project_name: class-singledispatch
+python_version: '3.8'
+repo_name: class_singledispatch
+test_suite: true
+use_precommit: true
+visibility: public

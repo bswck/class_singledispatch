@@ -1,6 +1,10 @@
-# (c) bswck
-"""singledispatch() for classes -- https://github.com/python/cpython/issues/100623."""
+"""
+class_singledispatch.
 
+A singledispatch() for arguments that are classes annotated as specific types.
+
+(C) 2023-present Bartosz Sławecki (bswck)
+"""
 from __future__ import annotations as _annotations
 
 import sys

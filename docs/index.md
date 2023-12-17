@@ -36,8 +36,8 @@ Instead of changing this particular file, you might want to alter the template:
 https://github.com/bswck/skeleton/tree/6253cb7/fragments/guide.md
 -->
 
-> [!Note]
-> If you use Windows, it is highly recommended to complete the installation in the way presented below through [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install).
+!!! Note
+    If you use Windows, it is highly recommended to complete the installation in the way presented below through [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install).
 
 
 
