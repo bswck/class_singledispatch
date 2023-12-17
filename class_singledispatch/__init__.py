@@ -1,7 +1,7 @@
 """
 class_singledispatch.
 
-A singledispatch() for arguments that are classes annotated as specific types.
+A ``singledispatch()`` for arguments that are classes annotated as specific types.
 
 (C) 2023-present Bartosz Sławecki (bswck)
 """

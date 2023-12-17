@@ -3,7 +3,7 @@
 # https://github.com/bswck/skeleton/tree/6253cb7/project/%23%25%20if%20docs%20%25%23mkdocs.yml%23%25%20endif%20%25%23.jinja
 
 site_name: "class_singledispatch"
-site_description: "A singledispatch() for arguments that are classes annotated as specific types."
+site_description: "A ``singledispatch()`` for arguments that are classes annotated as specific types."
 site_url: "https://class-singledispatch.readthedocs.io/en/latest/"
 repo_url: "https://github.com/bswck/class_singledispatch"
 repo_name: "bswck/class_singledispatch"

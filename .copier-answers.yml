@@ -8,10 +8,10 @@ github_username: bswck
 license_name: MIT
 org_full_name: Bartosz Sławecki
 package_name: class_singledispatch
-project_description: A singledispatch() for arguments that are classes annotated as
-    specific types.
+project_description: A ``singledispatch()`` for arguments that are classes annotated
+    as specific types.
 publish_on_pypi: true
-pypi_project_description: A singledispatch() for arguments that are classes annotated
+pypi_project_description: A ``singledispatch()`` for arguments that are classes annotated
     as specific types.
 pypi_project_name: class-singledispatch
 python_version: '3.8'
