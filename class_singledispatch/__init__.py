@@ -28,7 +28,6 @@ if TYPE_CHECKING:
 if sys.version_info < (3, 10):  # pragma: no cover
     from typing_extensions import ParamSpec
 
-    NoneType = type(None)
     OldFashionGenericAlias = GenericAlias = type(Type[object])
 
 else:  # pragma: no cover
