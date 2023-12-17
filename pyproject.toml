@@ -13,7 +13,6 @@ packages = [{ include = "class_singledispatch/" }]
 homepage = "https://github.com/bswck/class_singledispatch"
 
 [tool.poetry.urls]
-Documentation = "https://class-singledispatch.readthedocs.io/en/latest/"
 Issues = "https://github.com/bswck/class_singledispatch/issues"
 Distribution = "https://pypi.org/project/class-singledispatch/"
 Coverage = "https://coverage-badge.samuelcolvin.workers.dev/redirect/bswck/class_singledispatch"
@@ -35,13 +34,6 @@ coverage = "^7.3.2"
 poethepoet = "^0.24.3"
 pre-commit = "^3.5.0"
 smokeshow = "^0.4.0"
-[tool.poetry.group.docs]
-optional = true
-
-[tool.poetry.group.docs.dependencies]
-markdown-exec = ">=1.3.0"
-mkdocs-material = ">=8.2,<10.0.0"
-mkdocstrings = { version = ">=0.19.0", extras = ["python"] }
 
 [tool.poe.tasks]
 test = "pytest -v"
