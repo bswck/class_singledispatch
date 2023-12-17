@@ -1,0 +1,177 @@
+# (c) bswck
+"""singledispatch() for classes -- https://github.com/python/cpython/issues/100623."""
+
+from __future__ import annotations as _annotations
+
+import sys
+from functools import partial, singledispatch
+from types import MappingProxyType
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Generic,
+    TypeVar,
+    get_args,
+    get_origin,
+    get_type_hints,
+    overload,
+)
+
+if TYPE_CHECKING:
+    from collections.abc import Callable
+
+if sys.version_info < (3, 10):  # pragma: no cover
+    from typing import Type
+
+    from typing_extensions import ParamSpec
+
+    NoneType = type(None)
+    GenericAlias = type(Type[object])
+else:  # pragma: no cover
+    from types import GenericAlias, NoneType
+    from typing import ParamSpec
+
+_P = ParamSpec("_P")
+_R = TypeVar("_R")
+
+
+class _ClassSingleDispatchCallable(Generic[_R]):
+    def __init__(self, func: Callable[..., _R]) -> None:
+        self._dispatch = singledispatch(func)
+
+    def dispatch(self, cls: type[Any]) -> Callable[..., _R]:
+        return self._dispatch.dispatch(cls)
+
+    @property
+    def registry(self) -> MappingProxyType[type[Any], Callable[..., _R]]:
+        return self._dispatch.registry
+
+    @overload
+    def register(
+        self,
+        cls: type[Any],
+        /,
+        func: Callable[_P, _R],
+    ) -> Callable[_P, _R]:
+        ...
+
+    @overload
+    def register(
+        self,
+        cls: type[Any],
+        /,
+        func: None = None,
+    ) -> partial[Callable[..., _R]]:
+        ...
+
+    @overload
+    def register(
+        self,
+        cls: Callable[..., _R],
+        /,
+        func: None = None,
+    ) -> partial[Callable[..., _R]]:
+        ...
+
+    def register(
+        self,
+        cls: type[Any] | Callable[..., _R],
+        /,
+        func: Callable[_P, _R] | None = None,
+    ) -> Callable[_P, _R] | partial[Callable[_P, _R]]:
+        """
+        Register a new function as a dispatcher for `cls`.
+
+        For usage guide, please see the `class_singledispatch` documentation.
+        """
+        if isinstance(cls, type):
+            if func is None:
+                return lambda *args, **kwargs: self.register(cls, *args, **kwargs)
+        else:
+            if func is not None:
+                msg = (
+                    f"Invalid first argument to `register()`. "
+                    f"{cls!r} is not a class."
+                )
+                raise TypeError(msg)
+            annotations = getattr(cls, "__annotations__", {})
+            if not annotations:
+                msg = (
+                    f"Invalid first argument to `register()`: {cls!r}. "
+                    f"Use either `@register(some_class)` or plain `@register` "
+                    f"on an annotated function."
+                )
+                raise TypeError(msg)
+            func = cls
+
+            argument_name, generic_alias = next(iter(get_type_hints(func).items()))
+            if not (
+                isinstance(generic_alias, GenericAlias)
+                and issubclass(get_origin(generic_alias), type)
+            ):
+                msg = (
+                    f"Invalid annotation for {argument_name!r}. "
+                    f"{generic_alias!r} is not a type[T] annotation."
+                )
+                raise TypeError(msg)
+            cls = next(iter(get_args(generic_alias)), object)
+            if cls is None:
+                cls = NoneType
+            elif not cls:
+                # Type[()] -> Type[object]
+                cls = object
+            if not isinstance(cls, type):
+                msg = (
+                    f"Invalid annotation for {argument_name!r}. "
+                    f"{cls!r} is not a class."
+                )
+                raise TypeError(msg)
+
+        self._dispatch.register(cls, func)
+        return func
+
+    def _clear_cache(self) -> None:
+        self._dispatch._clear_cache()  # noqa: SLF001
+
+    def __call__(self, cls: type[Any], /, *args: Any, **kwargs: Any) -> _R:
+        return self.dispatch(cls)(cls, *args, **kwargs)
+
+
+def class_singledispatch(
+    func: Callable[..., _R],
+    /,
+) -> _ClassSingleDispatchCallable[_R]:
+    """
+    Use `functools.singledispatch` to singledispatch classes as parameters.
+
+    While `functools.singledispatch` examines the class of the first user argument,
+    `class_singledispatch` uses the first argument as the class itself and performs
+    the same task with it as `functools.singledispatch`.
+
+    ```python
+    class T:
+        pass
+
+    class OtherT:
+        pass
+
+    @class_singledispatch
+    def on_class(cls: type[T], /) -> None:
+        print("T!")
+
+    @on_class.register
+    def on_other_class(cls: type[OtherT], /) -> None:
+        print("OtherT!")
+
+    # Useful for <=3.10:
+    # Pass the class to the decorator not to use the annotation for resolution
+    @on_class.register(SomeOtherT)
+    def on_some_other_class(cls: type[SomeOtherT], /) -> None:
+        print("SomeOtherT!")
+
+    on_class(T)  # T!
+    on_class(OtherT)  #  OtherT!
+    on_class(SomeOtherT)  #  SomeOtherT!
+    ```
+    """
+    return _ClassSingleDispatchCallable(func)
