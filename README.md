@@ -56,11 +56,9 @@ on_class(SomeOtherT)  #  SomeOtherT!
 
 
 # Installation
-If you want to…
 
 
 
-## …use this tool in your project 💻
 You might simply install it with pip:
 
 ```shell
@@ -73,12 +71,12 @@ If you use [Poetry](https://python-poetry.org/), then run:
 poetry add class-singledispatch
 ```
 
-## …contribute to [class_singledispatch](https://github.com/bswck/class_singledispatch) 🚀
+## For contributors
 
 <!--
-This section was generated from bswck/skeleton@6253cb7.
+This section was generated from bswck/skeleton@01e08d2.
 Instead of changing this particular file, you might want to alter the template:
-https://github.com/bswck/skeleton/tree/6253cb7/fragments/guide.md
+https://github.com/bswck/skeleton/tree/01e08d2/fragments/guide.md
 -->
 
 > [!Note]

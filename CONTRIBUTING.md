@@ -1,7 +1,7 @@
 <!--
-This file was generated from bswck/skeleton@6253cb7.
+This file was generated from bswck/skeleton@01e08d2.
 Instead of changing this particular file, you might want to alter the template:
-https://github.com/bswck/skeleton/tree/6253cb7/fragments/contributing.md
+https://github.com/bswck/skeleton/tree/01e08d2/fragments/contributing.md
 -->
 # Contributing to [class_singledispatch](https://github.com/bswck/class_singledispatch) 🎉
 Contributions are very welcome. 🚀
@@ -45,9 +45,9 @@ Ready to contribute? Here's a quick guide on how to set up class_singledispatch 
 
 
 <!--
-This section was generated from bswck/skeleton@6253cb7.
+This section was generated from bswck/skeleton@01e08d2.
 Instead of changing this particular file, you might want to alter the template:
-https://github.com/bswck/skeleton/tree/6253cb7/fragments/guide.md
+https://github.com/bswck/skeleton/tree/01e08d2/fragments/guide.md
 -->
 
 > [!Note]
