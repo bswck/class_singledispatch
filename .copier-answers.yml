@@ -1,4 +1,4 @@
-_commit: 01e08d2
+_commit: fe6ed23
 _src_path: gh:bswck/skeleton
 author_username: bswck
 docs: false
@@ -15,6 +15,6 @@ pypi_project_description: A ``singledispatch()`` for arguments that are classes 
 pypi_project_name: class-singledispatch
 python_version: '3.8'
 repo_name: class_singledispatch
-test_suite: true
+tests: true
 use_precommit: true
 visibility: public

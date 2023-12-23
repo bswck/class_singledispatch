@@ -1,6 +1,6 @@
-# This file was generated from bswck/skeleton@01e08d2.
+# This file was generated from bswck/skeleton@fe6ed23.
 # Instead of changing this particular file, you might want to alter the template:
-# https://github.com/bswck/skeleton/tree/01e08d2/project/pyproject.toml.jinja
+# https://github.com/bswck/skeleton/tree/fe6ed23/project/pyproject.toml.jinja
 
 [tool.poetry]
 name = "class_singledispatch"
@@ -23,9 +23,9 @@ python = ">=3.8,<=3.12"
 [tool.poetry.group.dev.dependencies]
 
 [tool.poetry.group.dev-skeleton.dependencies]
-# This dependency group was generated from bswck/skeleton@01e08d2.
+# This dependency group was generated from bswck/skeleton@fe6ed23.
 # Instead of changing this particular file, you might want to alter the template:
-# https://github.com/bswck/skeleton/tree/01e08d2/project/pyproject.toml.jinja
+# https://github.com/bswck/skeleton/tree/fe6ed23/project/pyproject.toml.jinja
 mypy = "^1.7.0"
 ruff = "^0.1.2"
 towncrier = "^23.11.0"
@@ -38,8 +38,7 @@ smokeshow = "^0.4.0"
 [tool.poe.tasks]
 test = "pytest -v"
 lint = "ruff check ."
-reanswer = "scripts/skeleton.sh reanswer"
-bump = "scripts/skeleton.sh bump"
+skeleton = "scripts/fe6ed23.sh"
 check = [
     { ref="test" },
     { ref="lint" },
