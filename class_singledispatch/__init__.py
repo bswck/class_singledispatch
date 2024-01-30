@@ -1,10 +1,10 @@
 """
-class_singledispatch.
+`class_singledispatch`.
 
 A ``singledispatch()`` for arguments that are classes annotated as specific types.
 https://github.com/python/cpython/issues/100623
 
-(C) 2023-present Bartosz Sławecki (bswck)
+(C) 2024-present Bartosz Sławecki (bswck)
 """
 from __future__ import annotations as _annotations
 

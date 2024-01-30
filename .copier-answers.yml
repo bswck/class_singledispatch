@@ -1,20 +1,24 @@
-_commit: fe6ed23
+_commit: 0.0.2rc-131-g4aee5bf
 _src_path: gh:bswck/skeleton
-author_username: bswck
-docs: false
-email_address: bswck.dev@gmail.com
-github_username: bswck
-license_name: MIT
-org_full_name: Bartosz Sławecki
-package_name: class_singledispatch
-project_description: A ``singledispatch()`` for arguments that are classes annotated
-    as specific types.
-publish_on_pypi: true
-pypi_project_description: A ``singledispatch()`` for arguments that are classes annotated
+author: bswck
+cli: false
+copyright: Bartosz Sławecki
+description: A ``singledispatch()`` for arguments that are classes annotated as specific
+    types.
+docs: true
+email: bswck.dev@gmail.com
+github: bswck
+license: MIT
+package: class_singledispatch
+precommit: true
+pypi: true
+pypi_description: A ``singledispatch()`` for arguments that are classes annotated
     as specific types.
 pypi_project_name: class-singledispatch
-python_version: '3.8'
-repo_name: class_singledispatch
+pypy: true
+python: '3.8'
+repo: class_singledispatch
+rtd: class-singledispatch
 tests: true
-use_precommit: true
 visibility: public
+wip: false
