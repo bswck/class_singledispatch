@@ -17,7 +17,7 @@ pypi_description: A ``singledispatch()`` for arguments that are classes annotate
 pypi_project: class-singledispatch
 pypy: true
 python: '3.8'
-python_max: '3.13'
+python_max: '4.0'
 repo: class_singledispatch
 rtd: class-singledispatch
 tests: true
