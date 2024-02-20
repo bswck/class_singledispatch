@@ -1,12 +1,12 @@
+# SPDX-License-Identifier: MIT
+# (C) 2024-present Bartosz Sławecki (bswck)
 """
 `class_singledispatch`.
 
 A ``singledispatch()`` for arguments that are classes annotated as specific types.
 https://github.com/python/cpython/issues/100623
-
-(C) 2024-present Bartosz Sławecki (bswck)
 """
-from __future__ import annotations as _annotations
+from __future__ import annotations
 
 import sys
 from functools import partial, singledispatch
@@ -55,8 +55,8 @@ def resolve_annotated_type(func: Callable[..., _R]) -> type[Any]:
     This function is used to determine the type of the first argument of `func`
     when the first argument is annotated as a type (e.g. `type[SomeClass]`).
     """
-    annotations = getattr(func, "__annotations__", {})
-    if not annotations:
+    function_annotations = getattr(func, "__annotations__", {})
+    if not function_annotations:
         msg = (
             f"Invalid first argument to `register()`: {func!r}. "
             f"Use either `@register(some_class)` or plain `@register` "

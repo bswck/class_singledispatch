@@ -1,4 +1,4 @@
-_commit: 0.0.2rc-131-g4aee5bf
+_commit: 0.0.2rc-150-gf81555e
 _src_path: gh:bswck/skeleton
 author: bswck
 cli: false
@@ -14,9 +14,10 @@ precommit: true
 pypi: true
 pypi_description: A ``singledispatch()`` for arguments that are classes annotated
     as specific types.
-pypi_project_name: class-singledispatch
+pypi_project: class-singledispatch
 pypy: true
 python: '3.8'
+python_max: '3.13'
 repo: class_singledispatch
 rtd: class-singledispatch
 tests: true

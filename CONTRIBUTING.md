@@ -1,7 +1,7 @@
 <!--
-This file was generated from bswck/skeleton@0.0.2rc-131-g4aee5bf.
+This file was generated from bswck/skeleton@0.0.2rc-150-gf81555e.
 Instead of changing this particular file, you might want to alter the template:
-https://github.com/bswck/skeleton/tree/0.0.2rc-131-g4aee5bf/fragments/contributing.md
+https://github.com/bswck/skeleton/tree/0.0.2rc-150-gf81555e/fragments/contributing.md
 -->
 # Contributing to [class_singledispatch](https://github.com/bswck/class_singledispatch) 🎉
 Contributions are very welcome. 🚀
@@ -46,9 +46,9 @@ Ready to contribute? Here's a quick guide on how to set up class_singledispatch 
 
 
 <!--
-This section was generated from bswck/skeleton@0.0.2rc-131-g4aee5bf.
+This section was generated from bswck/skeleton@0.0.2rc-150-gf81555e.
 Instead of changing this particular file, you might want to alter the template:
-https://github.com/bswck/skeleton/tree/0.0.2rc-131-g4aee5bf/fragments/guide.md
+https://github.com/bswck/skeleton/tree/0.0.2rc-150-gf81555e/fragments/guide.md
 -->
 > [!Note]
 > If you use Windows, it is highly recommended to complete the installation in the way presented below through [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install).

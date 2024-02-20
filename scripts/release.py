@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # (C) 2023–present Bartosz Sławecki (bswck)
 #
-# This file was generated from bswck/skeleton@0.0.2rc-131-g4aee5bf.
+# This file was generated from bswck/skeleton@0.0.2rc-150-gf81555e.
 # Instead of changing this particular file, you might want to alter the template:
-# https://github.com/bswck/skeleton/tree/0.0.2rc-131-g4aee5bf/project/scripts/release.py.jinja
+# https://github.com/bswck/skeleton/tree/0.0.2rc-150-gf81555e/project/scripts/release.py.jinja
 #
 """
 Automate the release process by updating local files, creating and pushing a new tag.
@@ -12,7 +12,7 @@ The complete the release process, create a GitHub release.
 GitHub Actions workflow will publish the package to PyPI via Trusted Publisher.
 
 Usage:
-$ poe release [major|minor|patch|MAJOR.MINOR.PATCH]
+`$ poe release [major|minor|patch|MAJOR.MINOR.PATCH]`
 """
 from __future__ import annotations
 

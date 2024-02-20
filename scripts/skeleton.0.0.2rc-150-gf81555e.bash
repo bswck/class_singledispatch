@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # (C) 2023–present Bartosz Sławecki (bswck)
 #
-# Interact with bswck/skeleton (current version: https://github.com/bswck/skeleton/tree/0.0.2rc-131-g4aee5bf).
+# Interact with bswck/skeleton (current version: https://github.com/bswck/skeleton/tree/0.0.2rc-150-gf81555e).
 #
-# This file was generated from bswck/skeleton@0.0.2rc-131-g4aee5bf.
+# This file was generated from bswck/skeleton@0.0.2rc-150-gf81555e.
 # Instead of changing this particular file, you might want to alter the template:
-# https://github.com/bswck/skeleton/tree/0.0.2rc-131-g4aee5bf/project/scripts/skeleton.%7B%7Bsref%7D%7D.bash.jinja
+# https://github.com/bswck/skeleton/tree/0.0.2rc-150-gf81555e/project/scripts/skeleton.%7B%7Bsref%7D%7D.bash.jinja
 #
 # Usage:
 #
@@ -126,32 +126,32 @@ make_context() {
 	)
 	export SKELETON_REF
 	SKELETON_REF=$(cat <<- 'EOF'
-		0.0.2rc-131-g4aee5bf
+		0.0.2rc-150-gf81555e
 	EOF
 	)
 	export SREF
 	SREF=$(cat <<- 'EOF'
-		0.0.2rc-131-g4aee5bf
+		0.0.2rc-150-gf81555e
 	EOF
 	)
 	export SKELETON_REV
 	SKELETON_REV=$(cat <<- 'EOF'
-		https://github.com/bswck/skeleton/tree/0.0.2rc-131-g4aee5bf
+		https://github.com/bswck/skeleton/tree/0.0.2rc-150-gf81555e
 	EOF
 	)
 	export SREV
 	SREV=$(cat <<- 'EOF'
-		https://github.com/bswck/skeleton/tree/0.0.2rc-131-g4aee5bf
+		https://github.com/bswck/skeleton/tree/0.0.2rc-150-gf81555e
 	EOF
 	)
 	export SKELETON_AND_REF
 	SKELETON_AND_REF=$(cat <<- 'EOF'
-		bswck/skeleton@0.0.2rc-131-g4aee5bf
+		bswck/skeleton@0.0.2rc-150-gf81555e
 	EOF
 	)
 	export SNREF
 	SNREF=$(cat <<- 'EOF'
-		bswck/skeleton@0.0.2rc-131-g4aee5bf
+		bswck/skeleton@0.0.2rc-150-gf81555e
 	EOF
 	)
 	export GH_REPO_ARGS
@@ -161,10 +161,10 @@ make_context() {
 	)
 	export GH_ENSURE_ENV
 	GH_ENSURE_ENV=$(cat <<- 'EOF'
-		jq -n '{"deployment_branch_policy": {"protected_branches": false,"custom_branch_policies": true}}' | gh api -H "Accept: application/vnd.github+json" -X PUT "/repos/bswck/class_singledispatch/environments/$1" --input -
+		jq -n '{"deployment_branch_policy": {"protected_branches": false,"custom_branch_policies": true}}' | gh api -H "Accept: application/vnd.github+json" -X PUT "/repos/bswck/class_singledispatch/environments/$1" --silent --input -
 	EOF
 	)
-    export LAST_REF="0.0.2rc-131-g4aee5bf"
+    export LAST_REF="0.0.2rc-150-gf81555e"
     export PROJECT_PATH_KEY="$$_skeleton_project_path"
     export NEW_REF_KEY="$$_skeleton_new_ref"
     export LAST_LICENSE_NAME="MIT"
