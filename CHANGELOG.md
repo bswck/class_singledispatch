@@ -12,7 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 
 ### Changed
 
-- Relaxed supported Python range to >3.8,<4.0
+- Relaxed supported Python range to >=3.8,<4.0
 
 
 ## [v1.0.2](https://github.com/bswck/class_singledispatch/tree/v1.0.2) (2023-12-17)
