@@ -21,11 +21,11 @@ from typing import (
     get_args,
     get_origin,
     get_type_hints,
-    overload,
 )
 
 if TYPE_CHECKING:
     from collections.abc import Callable
+    from typing import overload
 
 if sys.version_info < (3, 10):  # pragma: no cover
     from typing_extensions import ParamSpec
@@ -39,7 +39,7 @@ else:  # pragma: no cover
     OldFashionGenericAlias = type(Type[object])
 
 try:
-    from eval_type_backport import ForwardRef
+    from eval_type_backport import ForwardRef  # type: ignore  # noqa: PGH003
 except ImportError:  # pragma: no cover
     from typing import ForwardRef
 
@@ -108,32 +108,31 @@ class _ClassSingleDispatchCallable(Generic[_R]):
     def registry(self) -> MappingProxyType[type[Any], Callable[..., _R]]:
         return self._dispatch.registry
 
-    @overload
-    def register(
-        self,
-        cls: type[Any],
-        /,
-        func: Callable[_P, _R],
-    ) -> Callable[_P, _R]:
-        ...
+    if TYPE_CHECKING:
 
-    @overload
-    def register(
-        self,
-        cls: type[Any],
-        /,
-        func: None = None,
-    ) -> partial[Callable[..., _R]]:
-        ...
+        @overload
+        def register(
+            self,
+            cls: type[Any],
+            /,
+            func: Callable[_P, _R],
+        ) -> Callable[_P, _R]: ...
 
-    @overload
-    def register(
-        self,
-        cls: Callable[..., _R],
-        /,
-        func: None = None,
-    ) -> partial[Callable[..., _R]]:
-        ...
+        @overload
+        def register(
+            self,
+            cls: type[Any],
+            /,
+            func: None = None,
+        ) -> partial[Callable[..., _R]]: ...
+
+        @overload
+        def register(
+            self,
+            cls: Callable[..., _R],
+            /,
+            func: None = None,
+        ) -> partial[Callable[..., _R]]: ...
 
     def register(
         self,
