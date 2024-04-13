@@ -7,6 +7,18 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 
 <!-- insertion marker -->
 
+## [v1.1.0](https://github.com/bswck/class_singledispatch/tree/v1.1.0) (2024-04-13)
+
+
+### Added
+
+- Support for eval_type_backport ForwardRef.
+
+### Fixed
+
+- Relaxed supported Python versions to >=3.8.
+
+
 ## [v1.0.3](https://github.com/bswck/class_singledispatch/tree/v1.0.3) (2024-02-20)
 
 
