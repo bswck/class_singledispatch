@@ -6,6 +6,7 @@
 A ``singledispatch()`` for arguments that are classes annotated as specific types.
 https://github.com/python/cpython/issues/100623
 """
+
 from __future__ import annotations
 
 import sys
@@ -37,6 +38,11 @@ else:  # pragma: no cover
 
     OldFashionGenericAlias = type(Type[object])
 
+try:
+    from eval_type_backport import ForwardRef
+except ImportError:  # pragma: no cover
+    from typing import ForwardRef
+
 
 __all__ = (
     "class_singledispatch",
@@ -55,14 +61,21 @@ def resolve_annotated_type(func: Callable[..., _R]) -> type[Any]:
     This function is used to determine the type of the first argument of `func`
     when the first argument is annotated as a type (e.g. `type[SomeClass]`).
     """
-    function_annotations = getattr(func, "__annotations__", {})
-    if not function_annotations:
+    func_annotations = getattr(func, "__annotations__", {})
+    if not func_annotations:
         msg = (
             f"Invalid first argument to `register()`: {func!r}. "
             f"Use either `@register(some_class)` or plain `@register` "
             f"on an annotated function."
         )
         raise TypeError(msg)
+    for key, value in func_annotations.items():
+        if isinstance(value, str):
+            func_annotations[key] = ForwardRef(
+                value,
+                is_class=False,  # we decorate functions, not classes
+                is_argument=True,  # func is not a module
+            )
     argument_name, generic_alias = next(iter(get_type_hints(func).items()))
     if not (
         isinstance(generic_alias, (GenericAlias, OldFashionGenericAlias))
