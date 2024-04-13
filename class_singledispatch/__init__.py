@@ -194,7 +194,7 @@ def class_singledispatch(
     def on_other_class(cls: type[OtherT], /) -> None:
         print("OtherT!")
 
-    # Useful for <=3.10:
+    # Useful for <3.10 without eval_type_backport:
     # Pass the class to the decorator not to use the annotation for resolution
     @on_class.register(SomeOtherT)
     def on_some_other_class(cls: type[SomeOtherT], /) -> None:
