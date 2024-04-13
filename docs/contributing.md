@@ -1,8 +1,8 @@
 
 <!--
-This file was generated from bswck/skeleton@0.0.2rc-150-gf81555e.
+This file was generated from bswck/skeleton@0.0.2rc-215-g792492f.
 Instead of changing this particular file, you might want to alter the template:
-https://github.com/bswck/skeleton/tree/0.0.2rc-150-gf81555e/project/%23%25%20if%20docs%20%25%23docs%23%25%20endif%20%25%23/contributing.md.jinja
+https://github.com/bswck/skeleton/tree/0.0.2rc-215-g792492f/project/%23%25%20if%20docs%20%25%23docs%23%25%20endif%20%25%23/contributing.md.jinja
 -->
 # Contributing to [class_singledispatch](https://github.com/bswck/class_singledispatch) 🎉
 Contributions are very welcome. 🚀
@@ -47,9 +47,9 @@ Ready to contribute? Here's a quick guide on how to set up class_singledispatch 
 
 
 <!--
-This section was generated from bswck/skeleton@0.0.2rc-150-gf81555e.
+This section was generated from bswck/skeleton@0.0.2rc-215-g792492f.
 Instead of changing this particular file, you might want to alter the template:
-https://github.com/bswck/skeleton/tree/0.0.2rc-150-gf81555e/project/%23%25%20if%20docs%20%25%23docs%23%25%20endif%20%25%23/contributing.md.jinja
+https://github.com/bswck/skeleton/tree/0.0.2rc-215-g792492f/project/%23%25%20if%20docs%20%25%23docs%23%25%20endif%20%25%23/contributing.md.jinja
 -->
 !!! Note
     If you use Windows, it is highly recommended to complete the installation in the way presented below through [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install).
@@ -104,7 +104,7 @@ https://github.com/bswck/skeleton/tree/0.0.2rc-150-gf81555e/project/%23%25%20if%
 1.  Commit your changes and push your branch to GitHub:
 
     ```shell
-    git add .
+    git add -A
     git commit -m "Short description of changes (50 chars max)" -m "Optional extended description"
     git push origin name-of-your-bugfix-or-feature
     ```
