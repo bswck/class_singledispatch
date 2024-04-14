@@ -71,11 +71,7 @@ def resolve_annotated_type(func: Callable[..., _R]) -> type[Any]:
         raise TypeError(msg)
     for key, value in func_annotations.items():
         if isinstance(value, str):
-            func_annotations[key] = ForwardRef(
-                value,
-                is_class=False,  # we decorate functions, not classes
-                is_argument=True,  # func is not a module
-            )
+            func_annotations[key] = ForwardRef(value)
     argument_name, generic_alias = next(iter(get_type_hints(func).items()))
     if not (
         isinstance(generic_alias, (GenericAlias, OldFashionGenericAlias))
