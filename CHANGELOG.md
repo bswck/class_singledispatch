@@ -7,6 +7,14 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 
 <!-- insertion marker -->
 
+## [v1.1.1](https://github.com/bswck/class_singledispatch/tree/v1.1.1) (2024-04-15)
+
+
+### Fixed
+
+- Redundant `ForwardRef` construction arguments that broke Python 3.8.
+
+
 ## [v1.1.0](https://github.com/bswck/class_singledispatch/tree/v1.1.0) (2024-04-13)
 
 
