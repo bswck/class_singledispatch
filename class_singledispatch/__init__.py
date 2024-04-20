@@ -3,15 +3,15 @@
 """
 `class_singledispatch`.
 
-A ``singledispatch()`` for arguments that are classes annotated as specific types.
+A [functools.singledispatch][] for arguments that are classes
+annotated as specific types.
+
 https://github.com/python/cpython/issues/100623
 """
 
 from __future__ import annotations
 
-import sys
 from functools import partial, singledispatch
-from types import MappingProxyType
 from typing import (
     TYPE_CHECKING,
     Any,
@@ -25,18 +25,21 @@ from typing import (
 
 if TYPE_CHECKING:
     from collections.abc import Callable
+    from types import MappingProxyType
     from typing import overload
 
-if sys.version_info < (3, 10):  # pragma: no cover
-    from typing_extensions import ParamSpec
 
-    OldFashionGenericAlias = GenericAlias = type(Type[object])
+OldFashionGenericAlias = type(Type[object])
 
-else:  # pragma: no cover
-    from types import GenericAlias
-    from typing import ParamSpec
+try:
+    from types import GenericAlias  # type: ignore  # noqa: PGH003
+except ImportError:  # pragma: no cover
+    GenericAlias = OldFashionGenericAlias
 
-    OldFashionGenericAlias = type(Type[object])
+try:  # pragma: no cover
+    from typing_extensions import ParamSpec  # type: ignore  # noqa: PGH003
+except ImportError:  # pragma: no cover
+    from typing import ParamSpec  # type: ignore  # noqa: PGH003
 
 try:
     from eval_type_backport import ForwardRef  # type: ignore  # noqa: PGH003
@@ -169,11 +172,11 @@ def class_singledispatch(
     /,
 ) -> _ClassSingleDispatchCallable[_R]:
     """
-    Use `functools.singledispatch` to singledispatch classes as parameters.
+    Use [functools.singledispatch][] to singledispatch classes as parameters.
 
-    While `functools.singledispatch` examines the class of the first user argument,
-    `class_singledispatch` uses the first argument as the class itself and performs
-    the same task with it as `functools.singledispatch`.
+    While [functools.singledispatch][] examines the class of the first user argument,
+    [class_singledispatch][] uses the first argument as the class itself and performs
+    the same task with it as [functools.singledispatch][].
 
     ```python
     class T:

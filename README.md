@@ -4,7 +4,7 @@
 [![Coverage](https://coverage-badge.samuelcolvin.workers.dev/bswck/class_singledispatch.svg)](https://coverage-badge.samuelcolvin.workers.dev/redirect/bswck/class_singledispatch)
 [![Documentation Status](https://readthedocs.org/projects/class-singledispatch/badge/?version=latest)](https://class-singledispatch.readthedocs.io/en/latest/?badge=latest)
 
-A ``singledispatch()`` for arguments that are classes annotated as specific types.
+A [``singledispatch()``](https://docs.python.org/3/library/functools.html#functools.singledispatch) for arguments that are classes annotated as specific types.
 
 Inspired by https://github.com/python/cpython/issues/100623.
 
