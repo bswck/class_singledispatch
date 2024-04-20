@@ -7,12 +7,58 @@
 
 A ``singledispatch()`` for arguments that are classes annotated as specific types.
 
+# A Simple Example
+Use `functools.singledispatch` to singledispatch classes as parameters.
+
+While `functools.singledispatch` examines the class of the first user argument,
+`class_singledispatch` uses the first argument as the class itself and performs
+the same task with it as `functools.singledispatch`.
+
+```python
+from class_singledispatch import class_singledispatch
+
+
+class T:
+    pass
+
+
+class OtherT:
+    pass
+
+
+@class_singledispatch
+def on_class(cls: type[T], /) -> None:
+    print("T!")
+
+
+@on_class.register
+def on_other_class(cls: type[OtherT], /) -> None:
+    print("OtherT!")
+
+
+# Useful for <3.10 without eval_type_backport -- pass the class to the decorator
+# not to use the annotation from the function for the targeted class resolution
+@on_class.register(SomeOtherT)
+def on_some_other_class(cls: type[SomeOtherT], /) -> None:
+    print("SomeOtherT!")
+
+
+on_class(T)  # T!
+on_class(OtherT)  #  OtherT!
+on_class(SomeOtherT)  #  SomeOtherT!
+```
+
 # Installation
 You might simply install it with pip:
 
 ```shell
 pip install class-singledispatch
 ```
+!!! note
+    `class-singledispatch` supports modern type hinting.<br/>
+    To use [PEP 585](https://peps.python.org/pep-0585/)
+    or [PEP 604](https://peps.python.org/pep-0604/) annotations on Python <3.10, install
+    `class-singledispatch[modern-type-hints]`.
 
 If you use [Poetry](https://python-poetry.org/), then you might want to run:
 

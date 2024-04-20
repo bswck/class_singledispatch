@@ -41,7 +41,7 @@ else:  # pragma: no cover
 try:
     from eval_type_backport import ForwardRef  # type: ignore  # noqa: PGH003
 except ImportError:  # pragma: no cover
-    from typing import ForwardRef
+    from typing import ForwardRef  # type: ignore  # noqa: PGH003
 
 
 __all__ = (

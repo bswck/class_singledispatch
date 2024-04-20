@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import enum
 import sys
 from dataclasses import dataclass
@@ -8,73 +10,82 @@ import pytest
 from class_singledispatch import class_singledispatch, resolve_annotated_type
 
 
+try:
+    from eval_type_backport import ForwardRef  # type: ignore  # noqa: PGH003
+except ImportError:
+    from typing import ForwardRef  # type: ignore  # noqa: PGH003
+
+
 @dataclass
-class Fallback:
+class Spam:
     ...
 
 
 @dataclass
-class Special(Fallback):
+class Eggs(Spam):
     ...
 
 
 @dataclass
-class Superspecial(Fallback):
+class Ham(Spam):
     ...
 
 
 class ClassSingleDispatchResult(enum.Enum):
-    FALLBACK = "fallback instance"
-    SPECIAL = "special instance"
-    SUPERSPECIAL = "superspecial instance"
+    SPAM = "spam"
+    EGGS = "eggs"
+    HAM = "ham"
 
 
-if sys.version_info >= (3, 10):
+if (
+    ForwardRef.__module__.startswith("eval_type_backport")
+    or sys.version_info >= (3, 10)
+):
 
     def test_class_singledispatch_v10() -> None:
         @class_singledispatch
-        def on_class(c: type[Fallback], /) -> ClassSingleDispatchResult:
-            assert c is Fallback
-            return ClassSingleDispatchResult.FALLBACK
+        def on_class(c: type[Spam], /) -> ClassSingleDispatchResult:
+            assert c is Spam
+            return ClassSingleDispatchResult.SPAM
 
         @on_class.register
-        def on_special_class(c: type[Special], /) -> ClassSingleDispatchResult:
-            assert c is Special
-            return ClassSingleDispatchResult.SPECIAL
+        def on_eggs_class(c: type[Eggs], /) -> ClassSingleDispatchResult:
+            assert c is Eggs
+            return ClassSingleDispatchResult.EGGS
 
-        @on_class.register(Superspecial)
-        def on_superspecial_class(
-            c: type[Superspecial],
+        @on_class.register(Ham)
+        def on_ham_class(
+            c: type[Ham],
             /,
         ) -> ClassSingleDispatchResult:
-            assert c is Superspecial
-            return ClassSingleDispatchResult.SUPERSPECIAL
+            assert c is Ham
+            return ClassSingleDispatchResult.HAM
 
-        assert on_class(Fallback) is ClassSingleDispatchResult.FALLBACK
-        assert on_class(Special) is ClassSingleDispatchResult.SPECIAL
-        assert on_class(Superspecial) is ClassSingleDispatchResult.SUPERSPECIAL
+        assert on_class(Spam) is ClassSingleDispatchResult.SPAM
+        assert on_class(Eggs) is ClassSingleDispatchResult.EGGS
+        assert on_class(Ham) is ClassSingleDispatchResult.HAM
 
 
 def test_class_singledispatch_oldstyle() -> None:
 
     @class_singledispatch
-    def on_class(c: Type[Fallback], /) -> ClassSingleDispatchResult:
-        assert c is Fallback
-        return ClassSingleDispatchResult.FALLBACK
+    def on_class(c: Type[Spam], /) -> ClassSingleDispatchResult:
+        assert c is Spam
+        return ClassSingleDispatchResult.SPAM
 
     @on_class.register
-    def on_special_class(c: Type[Special], /) -> ClassSingleDispatchResult:
-        assert c is Special
-        return ClassSingleDispatchResult.SPECIAL
+    def on_eggs_class(c: Type[Eggs], /) -> ClassSingleDispatchResult:
+        assert c is Eggs
+        return ClassSingleDispatchResult.EGGS
 
-    @on_class.register(Superspecial)
-    def on_superspecial_class(c: Type[Superspecial], /) -> ClassSingleDispatchResult:
-        assert c is Superspecial
-        return ClassSingleDispatchResult.SUPERSPECIAL
+    @on_class.register(Ham)
+    def on_ham_class(c: Type[Ham], /) -> ClassSingleDispatchResult:
+        assert c is Ham
+        return ClassSingleDispatchResult.HAM
 
-    assert on_class(Fallback) is ClassSingleDispatchResult.FALLBACK
-    assert on_class(Special) is ClassSingleDispatchResult.SPECIAL
-    assert on_class(Superspecial) is ClassSingleDispatchResult.SUPERSPECIAL
+    assert on_class(Spam) is ClassSingleDispatchResult.SPAM
+    assert on_class(Eggs) is ClassSingleDispatchResult.EGGS
+    assert on_class(Ham) is ClassSingleDispatchResult.HAM
 
     def on_none(c: Type[lambda: None], /) -> None:  # type: ignore[valid-type]
         assert c is None
@@ -88,7 +99,7 @@ def test_class_singledispatch_oldstyle() -> None:
 
 def test_registry_available() -> None:
     @class_singledispatch
-    def on_class(c: Type[Fallback], /) -> None:
+    def on_class(c: Type[Spam], /) -> None:
         pass
 
     assert on_class.registry is on_class._dispatch.registry
@@ -98,11 +109,11 @@ def test_invalid_usage() -> None:
     with pytest.raises(TypeError):
 
         @class_singledispatch
-        def on_class(c: Fallback, /) -> None:
+        def on_class(c: Spam, /) -> None:
             pass
 
     @class_singledispatch
-    def on_class_ok(c: Type[Fallback], /) -> None:
+    def on_class_ok(c: Type[Spam], /) -> None:
         pass
 
     with pytest.raises(TypeError):

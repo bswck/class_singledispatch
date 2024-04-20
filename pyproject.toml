@@ -20,6 +20,7 @@ Coverage = "https://coverage-badge.samuelcolvin.workers.dev/redirect/bswck/class
 
 [tool.poetry.dependencies]
 python = ">=3.8"
+eval-type-backport = {version = ">=0.2.0", extras = ["modern-type-hints"]}
 
 [tool.poetry.group.dev.dependencies]
 

@@ -8,7 +8,7 @@ A ``singledispatch()`` for arguments that are classes annotated as specific type
 
 Inspired by https://github.com/python/cpython/issues/100623.
 
-# A simple example
+# A Simple Example
 Use `functools.singledispatch` to singledispatch classes as parameters.
 
 While `functools.singledispatch` examines the class of the first user argument,
@@ -55,6 +55,11 @@ You might simply install it with pip:
 ```shell
 pip install class-singledispatch
 ```
+> [!Note]
+> `class-singledispatch` supports modern type hinting.<br/>
+> To use [PEP 585](https://peps.python.org/pep-0585/)
+> or [PEP 604](https://peps.python.org/pep-0604/) annotations on Python <3.10, install
+> `class-singledispatch[modern-type-hints]`.
 
 If you use [Poetry](https://python-poetry.org/), then you might want to run:
 
