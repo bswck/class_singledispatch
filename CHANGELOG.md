@@ -7,6 +7,12 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 
 <!-- insertion marker -->
 
+## [v1.2.3.post1](https://github.com/bswck/class_singledispatch/tree/v1.2.3.post1) (2024-04-22)
+
+
+No significant changes.
+
+
 ## [v1.2.3](https://github.com/bswck/class_singledispatch/tree/v1.2.3) (2024-04-21)
 
 
