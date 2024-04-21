@@ -1,7 +1,7 @@
 <!--
-This file was generated from skeleton-ci/skeleton-python@0.0.2rc-218-g8123b8a.
+This file was generated from skeleton-ci/skeleton-python@0.0.2rc-224-ge16504a.
 Instead of changing this particular file, you might want to alter the template:
-https://github.com/skeleton-ci/skeleton-python/tree/0.0.2rc-218-g8123b8a/fragments/contributing.md
+https://github.com/skeleton-ci/skeleton-python/tree/0.0.2rc-224-ge16504a/fragments/contributing.md
 -->
 # Contributing to [class_singledispatch](https://github.com/bswck/class_singledispatch) 🎉
 Contributions are very welcome. 🚀
@@ -46,9 +46,9 @@ Ready to contribute? Here's a quick guide on how to set up class_singledispatch 
 
 
 <!--
-This section was generated from skeleton-ci/skeleton-python@0.0.2rc-218-g8123b8a.
+This section was generated from skeleton-ci/skeleton-python@0.0.2rc-224-ge16504a.
 Instead of changing this particular file, you might want to alter the template:
-https://github.com/skeleton-ci/skeleton-python/tree/0.0.2rc-218-g8123b8a/fragments/guide.md
+https://github.com/skeleton-ci/skeleton-python/tree/0.0.2rc-224-ge16504a/fragments/guide.md
 -->
 > [!Note]
 > If you use Windows, it is highly recommended to complete the installation in the way presented below through [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install).
