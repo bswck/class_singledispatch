@@ -20,7 +20,12 @@ Coverage = "https://coverage-badge.samuelcolvin.workers.dev/redirect/bswck/class
 
 [tool.poetry.dependencies]
 python = ">=3.8"
-eval-type-backport = {version = ">=0.2.0", extras = ["modern-type-hints"]}
+eval-type-backport = { version = ">=0.2.0", optional = true, extras = [
+    "modern-type-hints",
+] }
+
+[tool.poetry.extras]
+modern-type-hints = ["eval-type-backport"]
 
 [tool.poetry.group.dev.dependencies]
 
@@ -45,11 +50,6 @@ keyring = ">=25.0.0"
 addopts = "--doctest-modules"
 
 
-
-
-
-
-
 [tool.poetry.group.docs]
 optional = true
 
@@ -62,35 +62,32 @@ mkdocstrings = { version = ">=0.19.0", extras = ["python"] }
 test = "pytest -v"
 lint = "ruff check ."
 skeleton = "scripts/skeleton.0.0.2rc-218-g8123b8a.bash"
-check = [
-    { ref="test" },
-    { ref="lint" },
-]
+check = [{ ref = "test" }, { ref = "lint" }]
 release.script = "scripts.release:main"
 
 [tool.poe.tasks.added]
 shell = "towncrier create $TICKET.added.md --edit"
-args = [{name = "TICKET", default = "+", positional = true}]
+args = [{ name = "TICKET", default = "+", positional = true }]
 
 [tool.poe.tasks.changed]
 shell = "towncrier create $TICKET.changed.md --edit"
-args = [{name = "TICKET", default = "+", positional = true}]
+args = [{ name = "TICKET", default = "+", positional = true }]
 
 [tool.poe.tasks.fixed]
 shell = "towncrier create $TICKET.fixed.md --edit"
-args = [{name = "TICKET", default = "+", positional = true}]
+args = [{ name = "TICKET", default = "+", positional = true }]
 
 [tool.poe.tasks.deprecated]
 shell = "towncrier create $TICKET.deprecated.md --edit"
-args = [{name = "TICKET", default = "+", positional = true}]
+args = [{ name = "TICKET", default = "+", positional = true }]
 
 [tool.poe.tasks.removed]
 shell = "towncrier create $TICKET.removed.md --edit"
-args = [{name = "TICKET", default = "+", positional = true}]
+args = [{ name = "TICKET", default = "+", positional = true }]
 
 [tool.poe.tasks.security]
 shell = "towncrier create $TICKET.security.md --edit"
-args = [{name = "TICKET", default = "+", positional = true}]
+args = [{ name = "TICKET", default = "+", positional = true }]
 
 [tool.ruff]
 exclude = ["tests/", "scripts/"]
@@ -147,7 +144,7 @@ directory = "news"
 package = "class_singledispatch"
 filename = "CHANGELOG.md"
 start_string = "<!-- insertion marker -->\n"
-underlines = ["", "", ""]  # We use Markdown
+underlines = ["", "", ""]                                                                                      # We use Markdown
 title_format = "## [{version}](https://github.com/bswck/class_singledispatch/tree/{version}) ({project_date})"
 issue_format = "[#{issue}](https://github.com/bswck/class_singledispatch/issues/{issue})"
 

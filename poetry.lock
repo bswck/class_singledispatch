@@ -426,7 +426,7 @@ files = [
 name = "eval-type-backport"
 version = "0.2.0"
 description = "Like `typing._eval_type`, but lets older Python versions use newer typing features."
-optional = false
+optional = true
 python-versions = ">=3.8"
 files = [
     {file = "eval_type_backport-0.2.0-py3-none-any.whl", hash = "sha256:ac2f73d30d40c5a30a80b8739a789d6bb5e49fdffa66d7912667e2015d9c9933"},
@@ -1869,7 +1869,10 @@ files = [
 docs = ["furo", "jaraco.packaging (>=9.3)", "jaraco.tidelift (>=1.4)", "rst.linker (>=1.9)", "sphinx (>=3.5)", "sphinx-lint"]
 testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=2.2)", "pytest-ignore-flaky", "pytest-mypy", "pytest-ruff (>=0.2.1)"]
 
+[extras]
+modern-type-hints = ["eval-type-backport"]
+
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8"
-content-hash = "9420f56fdb94c7d03e1fab21532970becf6e7ab136a0428f9d2d387a8363b246"
+content-hash = "39ecc3fd9532fea0ff998bf8345b94c6a7acc999174743ea6619344660ea3c3c"
