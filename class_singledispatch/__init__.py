@@ -3,7 +3,7 @@
 """
 `class_singledispatch`.
 
-A [functools.singledispatch][] for arguments that are classes
+A [`singledispatch`][functools.singledispatch] for arguments that are classes
 annotated as specific types.
 
 https://github.com/python/cpython/issues/100623
@@ -142,7 +142,8 @@ class _ClassSingleDispatchCallable(Generic[_R]):
         """
         Register a new function as a dispatcher for `cls`.
 
-        For usage guide, please see the `class_singledispatch` documentation.
+        For usage guide, please see the [`class_singledispatch`][class_singledispatch]
+        documentation.
         """
         if isinstance(cls, type):
             if func is None:
@@ -172,11 +173,12 @@ def class_singledispatch(
     /,
 ) -> _ClassSingleDispatchCallable[_R]:
     """
-    Use [functools.singledispatch][] to singledispatch classes as parameters.
+    Use [`functools.singledispatch`][functools.singledispatch] to singledispatch
+    classes as parameters.
 
-    While [functools.singledispatch][] examines the class of the first user argument,
+    While `singledispatch` examines the class of the first user argument,
     [class_singledispatch][] uses the first argument as the class itself and performs
-    the same task with it as [functools.singledispatch][].
+    the same task with it as `singledispatch`.
 
     ```python
     class T:
@@ -203,5 +205,5 @@ def class_singledispatch(
     on_class(OtherT)  #  OtherT!
     on_class(SomeOtherT)  #  SomeOtherT!
     ```
-    """
+    """  # noqa: D205
     return _ClassSingleDispatchCallable(func)

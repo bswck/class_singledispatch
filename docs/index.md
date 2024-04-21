@@ -5,14 +5,13 @@
 [![Coverage](https://coverage-badge.samuelcolvin.workers.dev/bswck/class_singledispatch.svg)](https://coverage-badge.samuelcolvin.workers.dev/redirect/bswck/class_singledispatch)
 [![Documentation Status](https://readthedocs.org/projects/class-singledispatch/badge/?version=latest)](https://class-singledispatch.readthedocs.io/en/latest/?badge=latest)
 
-A ``singledispatch()`` for arguments that are classes annotated as specific types.
+A [`singledispatch()`][functools.singledispatch] for arguments that are classes
+annotated as specific types.
 
 # A Simple Example
-Use `functools.singledispatch` to singledispatch classes as parameters.
-
-While `functools.singledispatch` examines the class of the first user argument,
-`class_singledispatch` uses the first argument as the class itself and performs
-the same task with it as `functools.singledispatch`.
+While [`functools.singledispatch`][functools.singledispatch] examines the class
+of the first user argument, `class_singledispatch` uses the first argument
+as the class itself and performs the same task with it as `functools.singledispatch`.
 
 ```python
 from class_singledispatch import class_singledispatch

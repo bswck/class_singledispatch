@@ -9,8 +9,6 @@ A [``singledispatch()``](https://docs.python.org/3/library/functools.html#functo
 Inspired by https://github.com/python/cpython/issues/100623.
 
 # A Simple Example
-Use `functools.singledispatch` to singledispatch classes as parameters.
-
 While `functools.singledispatch` examines the class of the first user argument,
 `class_singledispatch` uses the first argument as the class itself and performs
 the same task with it as `functools.singledispatch`.
