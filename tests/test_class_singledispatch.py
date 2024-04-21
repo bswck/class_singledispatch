@@ -2,18 +2,16 @@ from __future__ import annotations
 
 import enum
 import sys
+from contextlib import suppress
 from dataclasses import dataclass
-from typing import Type
+from typing import ForwardRef, Type
 
 import pytest
 
 from class_singledispatch import class_singledispatch, resolve_annotated_type
 
-
-try:
-    from eval_type_backport import ForwardRef  # type: ignore  # noqa: PGH003
-except ImportError:
-    from typing import ForwardRef  # type: ignore  # noqa: PGH003
+with suppress(ImportError):
+    from eval_type_backport import ForwardRef
 
 
 @dataclass

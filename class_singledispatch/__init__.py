@@ -11,10 +11,13 @@ https://github.com/python/cpython/issues/100623
 
 from __future__ import annotations
 
+import sys
+from contextlib import suppress
 from functools import partial, singledispatch
 from typing import (
     TYPE_CHECKING,
     Any,
+    ForwardRef,
     Generic,
     Type,
     TypeVar,
@@ -29,22 +32,21 @@ if TYPE_CHECKING:
     from typing import overload
 
 
-OldFashionGenericAlias = type(Type[object])
+OldFashionGenericAlias: type[object] = type(Type[object])
 
-try:
-    from types import GenericAlias  # type: ignore  # noqa: PGH003
-except ImportError:  # pragma: no cover
+if sys.version_info < (3, 9):
     GenericAlias = OldFashionGenericAlias
+else:
+    from types import GenericAlias
 
-try:  # pragma: no cover
-    from typing_extensions import ParamSpec  # type: ignore  # noqa: PGH003
-except ImportError:  # pragma: no cover
-    from typing import ParamSpec  # type: ignore  # noqa: PGH003
 
-try:
-    from eval_type_backport import ForwardRef  # type: ignore  # noqa: PGH003
-except ImportError:  # pragma: no cover
-    from typing import ForwardRef  # type: ignore  # noqa: PGH003
+if sys.version_info < (3, 10):
+    from typing_extensions import ParamSpec
+else:
+    from typing import ParamSpec
+
+with suppress(ImportError):
+    from eval_type_backport import ForwardRef  # noqa: F811
 
 
 __all__ = (
