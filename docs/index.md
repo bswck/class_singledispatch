@@ -10,8 +10,9 @@ annotated as specific types.
 
 # A Simple Example
 While [`functools.singledispatch`][functools.singledispatch] examines the class
-of the first user argument, `class_singledispatch` uses the first argument
-as the class itself and performs the same task with it as `functools.singledispatch`.
+of the first user argument, [`class_singledispatch`][class_singledispatch.class_singledispatch]
+uses the first argument as the class itself and performs the same task with it
+as `functools.singledispatch`.
 
 ```python
 from class_singledispatch import class_singledispatch
