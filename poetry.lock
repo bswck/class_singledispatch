@@ -1875,4 +1875,4 @@ modern-type-hints = ["eval-type-backport"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8"
-content-hash = "39ecc3fd9532fea0ff998bf8345b94c6a7acc999174743ea6619344660ea3c3c"
+content-hash = "27fa5c3d7fb1b9bf410fd0b274b78bf1423f0fe65d273b62cb298930699ecc76"

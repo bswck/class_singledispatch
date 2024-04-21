@@ -20,9 +20,7 @@ Coverage = "https://coverage-badge.samuelcolvin.workers.dev/redirect/bswck/class
 
 [tool.poetry.dependencies]
 python = ">=3.8"
-eval-type-backport = { version = ">=0.2.0", optional = true, extras = [
-    "modern-type-hints",
-] }
+eval-type-backport = { version = ">=0.2.0", optional = true }
 
 [tool.poetry.extras]
 modern-type-hints = ["eval-type-backport"]
@@ -48,11 +46,6 @@ keyring = ">=25.0.0"
 
 [tool.pytest.ini_options]
 addopts = "--doctest-modules"
-
-
-
-
-
 [tool.poetry.group.docs]
 optional = true
 
