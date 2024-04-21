@@ -144,7 +144,8 @@ class _ClassSingleDispatchCallable(Generic[_R]):
         """
         Register a new function as a dispatcher for `cls`.
 
-        For usage guide, please see the [`class_singledispatch`][class_singledispatch]
+        For usage guide, please see the
+        [`class_singledispatch`][class_singledispatch.class_singledispatch]
         documentation.
         """
         if isinstance(cls, type):
@@ -175,12 +176,13 @@ def class_singledispatch(
     /,
 ) -> _ClassSingleDispatchCallable[_R]:
     """
-    Use [`functools.singledispatch`][functools.singledispatch] to singledispatch
+    Use [`functools.singledispatch`][functools.singledispatch] to dispatch
     classes as parameters.
 
     While `singledispatch` examines the class of the first user argument,
-    [class_singledispatch][] uses the first argument as the class itself and performs
-    the same task with it as `singledispatch`.
+    [`class_singledispatch`][class_singledispatch.class_singledispatch] uses
+    the first argument as the class itself and performs the same task with it
+    as `singledispatch`.
 
     ```python
     class T:
