@@ -7,6 +7,14 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 
 <!-- insertion marker -->
 
+## [v1.2.1](https://github.com/bswck/class_singledispatch/tree/v1.2.1) (2024-04-21)
+
+
+### Fixed
+
+- Support for 3.9 with `eval_type_backport`.
+
+
 ## [v1.2.0](https://github.com/bswck/class_singledispatch/tree/v1.2.0) (2024-04-20)
 
 
