@@ -4,7 +4,7 @@
 
 [tool.poetry]
 name = "class_singledispatch"
-version = "1.2.3"
+version = "1.2.4"
 description = "A ``singledispatch()`` for arguments that are classes annotated as specific types."
 authors = ["bswck <bartoszpiotrslawecki@gmail.com>"]
 license = "MIT"
@@ -46,6 +46,8 @@ keyring = ">=25.0.0"
 
 [tool.pytest.ini_options]
 addopts = "--doctest-modules"
+
+
 
 [tool.poetry.group.docs]
 optional = true
